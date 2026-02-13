@@ -12,6 +12,10 @@ SELECT
 	f.price,
 	f.sales_amount,
 
+	p.product_name,
+	p.catogary,
+	p.subcatogary,
+
 	c.customer_key,
 	c.first_name,
 	c.last_name,
@@ -25,3 +29,10 @@ LEFT JOIN gold.dim_products p
 	ON f.product_key=p.product_key
 LEFT JOIN gold.dim_customers c
 	ON f.customer_key=c.customer_key;
+
+
+
+
+
+
+SELECT * FROM gold.vw_sales_analytics

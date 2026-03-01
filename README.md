@@ -1,139 +1,167 @@
-# Data Warehouse Project — CRM & ERP Integration (Medallion Architecture)
+# Enterprise Data Warehouse and Intelligent Decision Support System  
+## CRM and ERP Integration using Medallion Architecture
 
 ## Project Overview
 
-This project demonstrates the design and implementation of a Data Warehouse using CRM and ERP CSV datasets as source systems.  
-The ETL pipeline follows the Medallion Architecture (Bronze, Silver, Gold) and uses a Truncate and Load strategy for data ingestion and transformation.
+This project demonstrates the design and implementation of an end-to-end Enterprise Data Warehouse integrating CRM and ERP systems. The solution follows the Medallion Architecture (Bronze, Silver, Gold) and implements dimensional modeling using a star schema.
 
-The objective of this project is to demonstrate:
-- End-to-end data warehouse development
-- ETL design using layered architecture
-- Dimensional data modeling
-- Business-focused analytical tables
-- Complete technical and business documentation
+The project was further extended into an Intelligent Decision Support System (DSS) by integrating predictive analytics, rule-based decision logic, what-if scenario simulation, and an interactive Power BI dashboard.
+
+The system transforms raw operational data into predictive insights and actionable business recommendations.
 
 ---
 
-## Architecture — Medallion Layers
+## Architecture Overview
 
-### Bronze Layer (Raw Data)
-- Direct ingestion of CSV files from CRM and ERP systems
-- Minimal or no transformations
-- Full refresh using truncate and load
+### Phase 1: Data Warehouse Implementation
 
-### Silver Layer (Cleansed and Conformed)
-- Data cleansing and standardization
-- Deduplication and data quality checks
-- Business rules applied
-- Conformed dimensions across CRM and ERP
+#### Bronze Layer
+- Raw ingestion of CRM and ERP CSV datasets  
+- Truncate and load strategy  
+- Minimal transformations  
 
-### Gold Layer (Business Ready)
-- Star schema implementation
-- Fact and dimension tables
-- Optimized for reporting and analytics
+#### Silver Layer
+- Data cleansing and validation  
+- Standardization and deduplication  
+- Conformed dimensions across CRM and ERP  
 
----
+#### Gold Layer
+- Star schema design  
+- Fact and dimension tables  
+- Optimized for analytical queries  
 
-## ETL Strategy
+### Core Gold Tables
 
-- Load Type: Truncate and Load  
-- Suitable for static or small-to-medium datasets  
-- ETL Flow:
-  1. Load raw CSV data into Bronze tables
-  2. Transform and cleanse data into Silver tables
-  3. Aggregate and model data into Gold fact and dimension tables
+#### Dimension Tables
+- Customer Dimension  
+- Product Dimension  
+- Date Dimension  
+- Salesperson Dimension (if applicable)  
 
-
----
-
-## Dataset
-
-Source Systems:
-- CRM System (customers, contacts, sales)
-- ERP System (orders, products, invoices)
-
-Format: CSV files  
-Used as raw input to the Bronze layer.
+#### Fact Tables
+- Sales Fact  
+- Orders Fact  
 
 ---
 
-## Data Modeling
+## Intelligent Decision Support System Extension
 
-The Gold layer follows dimensional modeling using star schema design.
+The warehouse was extended into an Intelligent DSS by adding predictive modeling and decision logic on top of the Gold layer.
 
-### Dimension Tables
-- Customer Dimension
-- Product Dimension
-- Date Dimension
-- Employee or Salesperson Dimension (if applicable)
+### Predictive Analytics Layer
 
-### Fact Tables
-- Sales Fact
-- Orders Fact (if applicable)
+A global country-aware forecasting model was developed using:
 
-Dimensions are conformed across both CRM and ERP sources.
+- Python (pyodbc, pandas, scikit-learn)  
+- Monthly aggregated sales data from SQL Server  
+- One-hot encoding for country feature  
+- Time-aware train/test split  
 
----
+**Target Variable:** Monthly Sales  
 
-## Documentation
+**Evaluation Metrics:**  
+- MAE ≈ 196K  
+- RMSE ≈ 216K  
 
-All project documentation is available in the `docs/` directory:
-
-- Business Object Model
-- Data Warehouse Architecture Diagram
-- Data Flow Diagram
-- Data Integration Design
-- Source System Questions and Assumptions
-- Logical and Physical Data Models
-
-These documents explain source systems, transformations, and analytical design.
+The model captures temporal trends and regional differences while remaining interpretable for business stakeholders.
 
 ---
 
-## Tools and Technologies
+## Decision Rules Engine
 
-- SQL Server for ETL and transformations
-- CSV files as source systems
-- Relational database for the Data Warehouse
-- GitHub for version control
+Predictions are processed through a rule-based decision layer to generate business recommendations.
+
+### Example Decision Rules
+
+- If predicted sales > historical average × 1.10 → Increase inventory allocation  
+- If predicted sales < historical average × 0.90 → Reduce inventory exposure  
+- If country = United States → Mark as high priority market  
+- If predicted sales below global average → Trigger marketing intervention  
+
+This converts forecasts into operational actions.
+
+---
+
+## What-If Scenario Simulation
+
+A scenario analysis layer enables demand variation testing. Users can simulate:
+
+- Demand increase or decrease percentages  
+- Regional shifts  
+- Seasonal changes  
+
+This supports proactive inventory planning, revenue forecasting, and risk mitigation.
+
+---
+
+## Power BI Presentation Layer
+
+An interactive Power BI dashboard was built as the presentation and interaction layer of the DSS.
+
+Features include:
+
+- Country-wise forecast visualization  
+- Monthly sales trend analysis  
+- KPI indicators  
+- What-if demand slider  
+- Dynamic decision output updates  
+
+The dashboard allows business users to simulate scenarios and instantly observe their impact.
+
+---
+
+## End-to-End System Flow
+
+## End-to-End System Flow
+
+CRM & ERP Source Data  
+        ↓  
+Bronze Layer (Raw Ingestion)  
+        ↓  
+Silver Layer (Cleansed & Conformed)  
+        ↓  
+Gold Layer (Star Schema)  
+        ↓  
+Country-wise Aggregation  
+        ↓  
+Global ML Forecast Model  
+        ↓  
+Decision Rules Engine  
+        ↓  
+What-If Simulation  
+        ↓  
+Power BI Dashboard  
+        ↓  
+Actionable Business Decisions
 
 
 ---
 
-## How to Run the Project
+## Technologies Used
 
-1. Clone the repository
-2. Load CSV files from the `dataset/` directory into staging or Bronze tables
-3. Execute ETL scripts in sequence:
-   - Bronze load procedures
-   - Silver transformation procedures
-   - Gold aggregation and modeling procedures
-4. Query Gold tables for reporting and analysis
+- SQL Server  
+- Python (pyodbc, pandas, scikit-learn, numpy)  
+- Power BI  
+- CSV source systems  
+- GitHub  
 
 ---
 
-## Learning Outcomes
+## Key Achievements
 
-This project demonstrates:
-- Medallion architecture implementation
-- Practical ETL pipeline development
-- Dimensional data modeling
-- Source-to-target data mapping
-- Business-driven warehouse design
-
----
-
-## Future Enhancements
-
-- Incremental loading instead of full refresh
-- Data validation and reconciliation checks
-- Workflow orchestration using scheduling tools
-- Integration with BI dashboards
-- Slowly Changing Dimensions (SCD) implementation
+- Implementation of Medallion architecture  
+- Dimensional modeling using star schema  
+- End-to-end ETL pipeline development  
+- Integration of machine learning with SQL Server  
+- Explainable forecasting model  
+- Rule-based intelligent decision system  
+- Scenario-driven business simulation  
+- Interactive executive-level dashboard  
 
 ---
 
-## Contributions
+## Conclusion
 
-This is a learning and portfolio project.  
-Suggestions and improvements are welcome through issues or pull requests.
+This project demonstrates how structured enterprise data can evolve from a traditional data warehouse into a fully functional Intelligent Decision Support System.
+
+It integrates data engineering, predictive analytics, and business intelligence into a cohesive architecture capable of delivering data-driven strategic decisions.

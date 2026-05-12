@@ -1,4 +1,4 @@
-# Enterprise Data Warehouse and Intelligent Decision Support System  
+# Data Warehouse and Intelligent Decision Support System  
 ## CRM and ERP Integration using Medallion Architecture
 
 ## Project Overview
